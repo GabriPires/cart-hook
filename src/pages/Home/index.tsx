@@ -30,8 +30,6 @@ const Home = (): JSX.Element => {
     return sumAmount;
   }, {} as CartItemsAmount);
 
-  console.log(cartItemsAmount);
-
   useEffect(() => {
     async function loadProducts() {
       const response = await api.get<Product[]>('/products');
@@ -54,7 +52,7 @@ const Home = (): JSX.Element => {
   return (
     <ProductList>
       {products.map((product) => (
-        <li>
+        <li key={product.id}>
           <img src={product.image} alt={product.title} />
           <strong>{product.title}</strong>
           <span>{product.priceFormatted}</span>
